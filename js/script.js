@@ -16,6 +16,7 @@ if (navClose) {
 }
 
 
+
 // REMOVE MOBILE MENU
 const navLink = document.querySelectorAll('.nav__link');
 
@@ -26,6 +27,7 @@ const linkAction = () => {
     navMenu.classList.remove('show-menu');
 };
 navLink.forEach(n => n.addEventListener('click', linkAction));
+
 
 
 // DARK THEME/MODE
@@ -40,3 +42,26 @@ themeButton.onclick = () => {
         document.body.classList.remove('active');
     }
 }
+
+
+
+// ACTIVE SCROLL SECTION
+const sections = document.querySelectorAll('section[id]')
+
+const scrollActive = () => {
+    const scrollY = window.pageYOffset
+
+    sections.forEach(current => {
+        const sectionHeight = current.offsetHeight,
+            sectionTop = current.offsetTop - 58,
+            sectionId = current.getAttribute('id'),
+            sectionsClass = document.querySelector('.nav__menu a[href*=' + sectionId + ']')
+
+        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+            sectionsClass.classList.add('active-link')
+        } else {
+            sectionsClass.classList.remove('active-link')
+        }
+    })
+}
+window.addEventListener('scroll', scrollActive)
