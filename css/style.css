@@ -183,6 +183,15 @@
             border-radius: 2rem;
             transition: bottom .3s;
         }
+        .diary,
+        .container1 {
+            width: 70%;
+            margin: 0 auto;
+            margin-bottom: 20px;
+        }
+        .container1 {
+            margin-top: 20px;
+        }
     }
     
     .navbar {
@@ -265,37 +274,175 @@
         transition: all 0.5s ease;
         transition: background .4s;
     }
-    /* MAIN */
+    /* MAIN SECTION */
     
     .home {
         display: flex;
         position: relative;
-        bottom: 3rem;
+        /* bottom: 3rem; */
         top: 1rem;
-        width: 95%;
-        margin-left: auto;
-        margin-right: auto;
+        width: 100%;
+        height: auto;
+        margin: 0;
         background-color: var(--bg-color);
         background-color: #033a80;
         border-radius: 1rem;
+        flex-direction: column;
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
         box-shadow: 0 4px 20px hsla(207, 24%, 35%, .4);
-        padding: 0;
+        padding: 20px 10px;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .diary {
+        order: 1;
+        width: 90%;
+        height: auto;
+        display: flex;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 20px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        padding: 2rem;
+        gap: 5px;
+        background-color: var(--bg-color);
+        background-color: #6c757d;
+    }
+    
+    .noteInput {
+        width: 90%;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 5px;
+        margin: 0 auto;
+        /* background-color: #373c4f; */
+    }
+    
+    .noteTextarea {
+        height: auto;
+    }
+    
+    .diary .noteInput input {
+        width: 100%;
+        height: 100%;
+        outline: none;
+        border: none;
+        border-bottom: 1px solid #f5f5f5;
+        padding: 5px 10px;
+        font-size: 1rem;
+        font-weight: 400;
+        color: #373c4f;
+        border-radius: 1rem;
+    }
+    
+    .diary .noteInput textarea {
+        width: 100%;
+        height: 50%;
+        outline: none;
+        border: none;
+        border-bottom: 1px solid #f5f5f5;
+        padding: 5px 15px;
+        font-size: 1rem;
+        font-weight: 400;
+        color: #373c4f;
+        resize: none;
+        word-wrap: normal;
+        border-radius: 1rem;
+    }
+    
+    .diary .noteInput input::placeholder {
+        color: #a5a5a5;
+    }
+    
+    .diary .noteInput input:focus::placeholder {
+        color: var(--text-color-light);
+    }
+    
+    .diary .noteInput textarea::placeholder {
+        color: #a5a5a5;
+    }
+    
+    .diary .noteInput textarea:focus:placeholder {
+        color: var(--text-color-light);
+    }
+    
+    .addNote {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+    
+    .addNote .addNotebtn {
+        height: 40px;
+        font-size: var(--p-font);
+        font-weight: 500;
+        outline: none;
+        border: none;
+        color: #fff;
+        background-color: var(--primary-clr);
+        border-radius: 5px;
+        cursor: pointer;
+        padding: 5px 10px;
+        border: 1px solid var(--primary-clr);
+    }
+    
+    .addNote .addNotebtn:hover {
+        background-color: transparent;
+        color: var(--bg-color);
+    }
+    
+    .diaryCategory {
+        position: absolute;
+        width: 15rem;
+        left: 50%;
+        /* right: 50; */
+        top: 15%;
+        transform: translate(-50%, -50%);
+        z-index: 1000;
+        grid-template-columns: repeat(3, max-content);
+        justify-content: center;
+        gap: 2rem 1rem;
+        transition: background .4s;
+        background-color: var(--bg-color);
+        box-shadow: 0 4px 20px hsla(207, 24%, 35%, .1);
+        padding: .9rem;
+        border-radius: 1rem;
+        text-align: center;
+        align-items: center;
+        display: none;
+        /* display should be grid  */
+    }
+    
+    .diaryCategory li {
+        display: flex;
+        padding: .2rem;
+        flex-direction: column;
+        color: var(--title-color);
+        font-size: var(--h3-font-size);
     }
     /* --> CALENDAR */
-    
-    .container1 {
+    /* .container1 {
         position: relative;
-        width: 1200px;
+        width: 90%;
         min-height: 850px;
         margin: 0 auto;
         padding: 5px;
-        padding: 2rem;
         color: var(--bg-color);
         display: flex;
         border-radius: 10px;
         background-color: var(--text-color);
+        order: 2;
+        bottom: 4rem;
+        margin-top: 20px;
     }
     
     .left {
@@ -700,19 +847,22 @@
     
     .add-event-wrapper {
         position: absolute;
-        bottom: 100px;
+        bottom: 100%;
         left: 50%;
         width: 90%;
+        /* height: 50%; */
         max-height: 0;
         overflow: hidden;
         border-radius: 5px;
-        background-color: #fff;
+        background-color: var(--bg-color);
         transform: translateX(-50%);
         transition: max-height 0.5s ease;
+        box-shadow: 0 4px 20px hsla(207, 24%, 35%, .4);
     }
     
     .add-event-wrapper.active {
-        max-height: 300px;
+        max-height: 400px;
+        bottom: 64%;
     }
     
     .add-event-header {
@@ -746,7 +896,7 @@
         display: flex;
         flex-direction: column;
         gap: 5px;
-        padding: 20px;
+        padding: 10px;
     }
     
     .add-event-body .add-event-input {
@@ -772,7 +922,7 @@
     
     .add-event-body .add-event-input textarea {
         width: 100%;
-        /* height: 100%; */
+        height: 50%;
         outline: none;
         border: none;
         border-bottom: 1px solid #f5f5f5;
@@ -833,6 +983,8 @@
         background-color: transparent;
         color: var(--primary-clr);
     }
+    
+    */
     /* SCROLLBAR */
     
      ::-webkit-scrollbar {
@@ -894,6 +1046,22 @@
         .navbar {
             gap: 1rem 1.25rem;
         }
+        .home {
+            top: 1rem;
+            width: 100%;
+            margin: 0;
+            padding: 10px;
+            flex-direction: column;
+        }
+        .diary {
+            margin: 30px auto;
+        }
+        /* .container1 {
+            position: relative;
+            width: 90%;
+            max-height: 550px;
+            margin: 0 auto;
+        } */
     }
     
     @media(min-width:576px) {
@@ -904,32 +1072,29 @@
         .nav {
             margin: 0 auto;
         }
-    }
-    
-    @media (max-width: 1000px) {
         .home {
-            display: flex;
-            position: relative;
-            bottom: 3rem;
-            top: 3rem;
-            /* left: 2.1rem; */
-            width: 99%;
-            margin: auto;
-            /* margin-left: auto; */
-            /* margin-right: auto; */
-            background-color: var(--bg-color);
-            background-color: #033a80;
-            border-radius: 1rem;
-            border-bottom-left-radius: 0;
-            border-bottom-right-radius: 0;
-            box-shadow: 0 4px 20px hsla(207, 24%, 35%, .4);
-            padding: 2rem;
+            top: 1rem;
+            width: 100%;
+            padding: 10px;
+            flex-direction: column;
+        }
+        .diary {
+            margin: 30px auto 90px auto;
+        }
+    }
+    /* @media (max-width: 1000px) {
+        .home {
+            width: 100%;
+            padding: 10px;
+            flex-direction: column;
         }
         .container1 {
+            width: 90%;
             height: auto;
             flex-direction: column;
             border-radius: 15px;
             padding: 2rem;
+            margin: 0 auto;
         }
         .container1 .left {
             width: 100%;
@@ -963,6 +1128,21 @@
     }
     
     @media (max-width: 500px) {
+        .home {
+            top: 1rem;
+            width: 100%;
+            padding: 5px;
+            flex-direction: column;
+        }
+        .diary {
+            margin: 30px auto 90px auto;
+        }
+        .container1 {
+            position: relative;
+            width: 90%;
+            min-height: 600px;
+            margin: 0 auto;
+        }
         .calendar .month {
             height: 75px;
         }
@@ -980,9 +1160,72 @@
         .right .today-date {
             padding: 20px;
         }
-    }
+    } */
     
-    @media (min-width: 768px) {}
+    @media (min-width: 768px) {
+        .home {
+            top: 1rem;
+            width: 100%;
+            padding: 10px;
+            flex-direction: column;
+        }
+        .add-event-wrapper {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            width: 90%;
+            /* height: 50%; */
+            max-height: 0;
+            overflow: hidden;
+            border-radius: 5px;
+            background-color: var(--bg-color);
+            transform: translateX(-50%);
+            transition: max-height 0.5s ease;
+            box-shadow: 0 4px 20px hsla(207, 24%, 35%, .4);
+        }
+        .add-event-wrapper.active {
+            max-height: 400px;
+            bottom: 64%;
+        }
+        .home {
+            width: 100%;
+            padding: 10px;
+        }
+        .diary {
+            margin: 30px auto 90px auto;
+        }
+        /* .container1 {
+            width: 90%;
+            height: auto;
+            flex-direction: column;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 0 auto;
+        }
+        .container1 .left {
+            width: 100%;
+            height: 100%;
+            padding: 20px 0;
+        }
+        .container1 .right {
+            width: 100%;
+            height: 100%;
+            padding: 20px 0;
+        }
+        .calendar::before,
+        .calendar::after {
+            top: 100%;
+            left: 50%;
+            width: 97%;
+            height: 12px;
+            border-radius: 0 0 5px 5px;
+            transform: translateX(-50%);
+        }
+        .calendar::before {
+            width: 94%;
+            top: calc(100% + 12px);
+        } */
+    }
     
     @media(min-width:1023px) {
         /* .header {
@@ -1157,26 +1400,55 @@
         .home {
             display: flex;
             position: relative;
-            bottom: 3rem;
             top: 3rem;
-            left: 2.1rem;
-            width: 90%;
-            /* margin-left: auto; */
-            /* margin-right: auto; */
-            background-color: var(--bg-color);
-            background-color: #033a80;
-            border-radius: 1rem;
-            border-bottom-left-radius: 0;
-            border-bottom-right-radius: 0;
-            box-shadow: 0 4px 20px hsla(207, 24%, 35%, .4);
+            left: 4.1rem;
+            width: 100%;
+            /* height: 800px; */
+            padding: 2rem;
+            /* gap: 20px; */
+            /* align-items: center; */
+        }
+        .diary {
+            width: 25%;
+        }
+        /* .container1 {
+            position: relative;
+            margin-top: 390px;
+            width: 80%;
+            min-height: 650px;
+            flex-direction: column;
+            border-radius: 15px;
             padding: 2rem;
         }
-        .container1 {
-            position: relative;
-            /* left: 50px; */
-            width: 70%;
-            height: 30%;
+        .container1 .left {
+            width: 100%;
+            height: 100%;
+            padding: 20px 0;
         }
+        .container1 .right {
+            width: 100%;
+            height: 100%;
+            padding: 20px 0;
+        }
+        .calendar::before,
+        .calendar::after {
+            top: 100%;
+            left: 50%;
+            width: 97%;
+            height: 12px;
+            border-radius: 0 0 5px 5px;
+            transform: translateX(-50%);
+        }
+        .calendar::before {
+            width: 94%;
+            top: calc(100% + 12px);
+        }
+        .events {
+            padding-bottom: 340px;
+        }
+        .add-event-wrapper {
+            bottom: 100px;
+        } */
     }
     
     @media(min-width:1048px) {
