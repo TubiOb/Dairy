@@ -69,9 +69,8 @@ window.addEventListener('scroll', scrollActive);
 
 
 
-// SHOW CATEGORIES
-const calendar = document.querySelector(".calendar"),
-    date = document.querySelector(".date"),
+// SHOW CATEGORIESconst calendar = document.querySelector(".calendar"),
+date = document.querySelector(".date"),
     daysContainer = document.querySelector(".days"),
     prev = document.querySelector(".prev"),
     next = document.querySelector(".next"),
@@ -85,6 +84,7 @@ const calendar = document.querySelector(".calendar"),
     addEventWrapper = document.querySelector(".add-event-wrapper "),
     addEventCloseBtn = document.querySelector(".close "),
     addEventTitle = document.querySelector(".event-name "),
+    addEventDetails = document.querySelector('#myContent'),
     addEventFrom = document.querySelector(".event-time-from "),
     addEventTo = document.querySelector(".event-time-to "),
     addEventSubmit = document.querySelector(".add-event-btn ");
@@ -109,20 +109,23 @@ const months = [
     "December",
 ];
 
-// const eventsArr = [{
+// const eventsArr = [
+//   {
 //     day: 13,
 //     month: 11,
 //     year: 2022,
-//     events: [{
-//             title: "Event 1 lorem ipsun dolar sit genfa tersd dsad ",
-//             time: "10:00 AM",
-//         },
-//         {
-//             title: "Event 2",
-//             time: "11:00 AM",
-//         },
+//     events: [
+//       {
+//         title: "Event 1 lorem ipsun dolar sit genfa tersd dsad ",
+//         time: "10:00 AM",
+//       },
+//       {
+//         title: "Event 2",
+//         time: "11:00 AM",
+//       },
 //     ],
-// }, ];
+//   },
+// ];
 
 const eventsArr = [];
 getEvents();
@@ -319,6 +322,9 @@ function updateEvents(date) {
               <i class="fas fa-circle"></i>
               <h3 class="event-title">${event.title}</h3>
             </div>
+            <div class="content">
+            <p class="event-content">${event.content}</p>
+            </div>
             <div class="event-time">
               <span class="event-time">${event.time}</span>
             </div>
@@ -355,25 +361,6 @@ addEventTitle.addEventListener("input", (e) => {
     addEventTitle.value = addEventTitle.value.slice(0, 60);
 });
 
-function defineProperty() {
-    var osccred = document.createElement("div");
-    osccred.innerHTML =
-        "A Project By <a href='https://www.youtube.com/channel/UCiUtBDVaSmMGKxg1HYeK-BQ' target=_blank>Open Source Coding</a>";
-    osccred.style.position = "absolute";
-    osccred.style.bottom = "0";
-    osccred.style.right = "0";
-    osccred.style.fontSize = "10px";
-    osccred.style.color = "#ccc";
-    osccred.style.fontFamily = "sans-serif";
-    osccred.style.padding = "5px";
-    osccred.style.background = "#fff";
-    osccred.style.borderTopLeftRadius = "5px";
-    osccred.style.borderBottomRightRadius = "5px";
-    osccred.style.boxShadow = "0 0 5px #ccc";
-    document.body.appendChild(osccred);
-}
-
-defineProperty();
 
 //allow only time in eventtime from and to
 addEventFrom.addEventListener("input", (e) => {
@@ -399,9 +386,10 @@ addEventTo.addEventListener("input", (e) => {
 //function to add event to eventsArr
 addEventSubmit.addEventListener("click", () => {
     const eventTitle = addEventTitle.value;
+    const eventDetails = addEventDetails.value;
     const eventTimeFrom = addEventFrom.value;
     const eventTimeTo = addEventTo.value;
-    if (eventTitle === "" || eventTimeFrom === "" || eventTimeTo === "") {
+    if (eventTitle === "" || eventTimeFrom === "" || eventTimeTo === "" || eventDetails === "") {
         alert("Please fill all the fields");
         return;
     }
@@ -475,6 +463,7 @@ addEventSubmit.addEventListener("click", () => {
     console.log(eventsArr);
     addEventWrapper.classList.remove("active");
     addEventTitle.value = "";
+    addEventDetails.value = "";
     addEventFrom.value = "";
     addEventTo.value = "";
     updateEvents(activeDay);
