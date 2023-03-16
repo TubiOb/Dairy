@@ -400,26 +400,45 @@
         color: var(--bg-color);
     }
     
-    .diaryCategory {
+    .myCategories {
         position: absolute;
-        width: 15rem;
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+        height: auto;
+        top: 50%;
         left: 50%;
-        /* right: 50; */
-        top: 15%;
         transform: translate(-50%, -50%);
-        z-index: 1000;
-        grid-template-columns: repeat(3, max-content);
-        justify-content: center;
-        gap: 2rem 1rem;
         transition: background .4s;
         background-color: var(--bg-color);
+        /* background-color: transparent; */
+        text-align: center;
+        z-index: 1000;
+        /* align-items: center; */
+        border-radius: 1rem;
         box-shadow: 0 4px 20px hsla(207, 24%, 35%, .1);
+    }
+    
+    .myCategories h3 {
+        position: relative;
+        font-size: var(--h3-font-size);
+        color: var(--title-color);
+        margin-top: 10px;
+    }
+    
+    .diaryCategory {
+        position: relative;
+        width: 100%;
+        grid-template-columns: repeat(3, max-content);
+        justify-content: center;
+        gap: 1rem 1rem;
+        background-color: var(--bg-color);
+        background: transparent;
         padding: .9rem;
         border-radius: 1rem;
         text-align: center;
         align-items: center;
-        display: none;
-        /* display should be grid  */
+        margin-top: 35px;
     }
     
     .diaryCategory li {
@@ -461,10 +480,9 @@
         color: var(--text-color-light);
         border-radius: 5px;
         background-color: var(--bg-color);
-    }
+    }*/
     /* set after behind the main element */
-    
-    .calendar::before,
+    /* .calendar::before,
     .calendar::after {
         content: "";
         position: absolute;
@@ -733,7 +751,7 @@
         background: linear-gradient(90deg, #3f4458, transparent);
         cursor: pointer;
     }
-    /* even event */
+    
     
     .events .event:nth-child(even) {
         background: transparent;
@@ -787,7 +805,6 @@
     .events .event:hover .event-time {
         color: #fff;
     }
-    /* add tick in event after */
     
     .events .event::after {
         content: "✓";
@@ -850,7 +867,6 @@
         bottom: 100%;
         left: 50%;
         width: 90%;
-        /* height: 50%; */
         max-height: 0;
         overflow: hidden;
         border-radius: 5px;
