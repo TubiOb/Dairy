@@ -46,25 +46,25 @@ themeButton.onclick = () => {
 
 
 // ACTIVE SCROLL SECTION
-const sections = document.querySelectorAll('section[id]')
+// const sections = document.querySelectorAll('section[id]')
 
-const scrollActive = () => {
-    const scrollY = window.pageYOffset
+// const scrollActive = () => {
+//     const scrollY = window.pageYOffset
 
-    sections.forEach(current => {
-        const sectionHeight = current.offsetHeight,
-            sectionTop = current.offsetTop - 58,
-            sectionId = current.getAttribute('id'),
-            sectionsClass = document.querySelector('.nav__menu a[href*=' + sectionId + ']')
+//     sections.forEach(current => {
+//         const sectionHeight = current.offsetHeight,
+//             sectionTop = current.offsetTop - 58,
+//             sectionId = current.getAttribute('id'),
+//             sectionsClass = document.querySelector('.nav__menu a[href*=' + sectionId + ']')
 
-        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-            sectionsClass.classList.add('active-link')
-        } else {
-            sectionsClass.classList.remove('active-link')
-        }
-    })
-}
-window.addEventListener('scroll', scrollActive);
+//         if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+//             sectionsClass.classList.add('active-link')
+//         } else {
+//             sectionsClass.classList.remove('active-link')
+//         }
+//     })
+// }
+// window.addEventListener('scroll', scrollActive);
 
 
 
@@ -530,3 +530,182 @@ window.addEventListener('scroll', scrollActive);
 //     time = timeHour + ":" + timeMin + " " + timeFormat;
 //     return time;
 // }
+
+
+
+
+// FUNCTIONALITES OF THE NAVBAR/SIDEBAR UL ELEMENTS
+const Folders = document.querySelectorAll('.folders')
+const category = document.querySelector('#Category');
+const folderCategories = document.querySelector('.categories');
+const diaryCategory = document.querySelector('.diaryCategory');
+const archive = document.querySelector('#Archive');
+const bin = document.querySelector('#Trash');
+const notif = document.querySelector('#Notification');
+const addNote = document.querySelector('.addNotebtn');
+const selectFolder = document.querySelector('.myCategories');
+const noteTitle = document.querySelector('.feelings');
+const noteContent = document.querySelector('.myThoughts');
+const saveToCategory = document.querySelectorAll('.saveCategory');
+const home = document.querySelector('.home');
+
+
+// OPENING OF THE CATEGORY LIST
+if (category) {
+    category.addEventListener('click', (event) => {
+        console.log("reaching")
+        event.stopPropagation();
+        folderCategories.classList.add('show-category');
+        folderCategories.classList.toggle('visible');
+    });
+
+    document.addEventListener('click', (event) => {
+        if (!folderCategories.contains(event.target)) {
+            folderCategories.classList.remove('show-category');
+        }
+    });
+}
+
+
+if (Folders) {
+    Folders.forEach((item) => {
+        item.addEventListener('click', () => {
+            folderCategories.classList.remove('show-FolderSelect');
+            // const showNotes = document.createElement('ul');
+        });
+    });
+}
+
+
+
+
+
+
+// ADDING NOTE BUTTON
+if (addNote) {
+    addNote.addEventListener('click', (event) => {
+        console.log("reaching")
+        event.stopPropagation();
+        if (noteTitle.value === '' || noteContent.value === '') {
+            alert('Fields should be filled');
+            return;
+        }
+        selectFolder.classList.add('show-FolderSelect');
+        selectFolder.classList.toggle('visible');
+    });
+
+    document.addEventListener('click', (event) => {
+        if (!selectFolder.contains(event.target)) {
+            selectFolder.classList.remove('show-FolderSelect');
+        }
+    });
+}
+
+if (saveToCategory) {
+    saveToCategory.forEach((item) => {
+        item.addEventListener('click', () => {
+            selectFolder.classList.remove('show-FolderSelect');
+            // const showNotes = document.createElement('ul');
+        });
+    });
+}
+
+
+// SAVING TO FOLDERS
+
+// add event listener to each saveCategory element
+saveToCategory.forEach(saveCategory => {
+    saveCategory.addEventListener('click', () => {
+        // get the text content of the span element inside saveCategory
+        const categoryText = saveCategory.querySelector('span:nth-child(2)').textContent;
+
+        // get the corresponding folders element
+        const foldersElement = document.getElementById(`${categoryText.toLowerCase()}Category`);
+
+        // check if a ul element already exists
+        let ulElement = foldersElement.querySelector('ul');
+        if (!ulElement) {
+            // create a new ul element if none exists
+            ulElement = document.createElement('ul');
+            foldersElement.appendChild(ulElement);
+        }
+
+        // create a new li element
+        const newLi = document.createElement('li');
+
+        // add current date and month to the li
+        const date = new Date();
+        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        const dateText = `${monthNames[date.getMonth()]} ${date.getDate()}`;
+        const dateElement = document.createElement('span');
+        dateElement.textContent = dateText;
+        newLi.appendChild(dateElement);
+
+        // add note title and content to the li
+        const titleElement = document.createElement('h2');
+        titleElement.textContent = noteTitle.value;
+        newLi.appendChild(titleElement);
+
+        const contentElement = document.createElement('p');
+        contentElement.textContent = noteContent.value;
+        newLi.appendChild(contentElement);
+
+
+        // loop through all Folders and find the matching category name
+        Folders.forEach(folder => {
+            const folderCategoryName = folder.querySelector('span:nth-child(2)').textContent.toLowerCase();
+            if (folderCategoryName === categoryText.toLowerCase()) {
+                // add new li element to the corresponding ul element under the matching folder
+                let folderUlElement = folder.querySelector('ul');
+                if (!folderUlElement) {
+                    folderUlElement = document.createElement('ul');
+                    folder.appendChild(folderUlElement);
+                }
+                folderUlElement.appendChild(newLi);
+                alert("Saved!");
+                noteTitle.value = "";
+                noteContent.value = "";
+                // selectFolder.classList.remove('show-FolderSelect');
+                home.appendChild(folderUlElement);
+            }
+        });
+
+    });
+});
+
+
+
+// RETURN/SHOW UL ELEMENT FOR EACH FOLDER CATEGORY
+Folders.forEach(folder => {
+    // stopPropagation();
+    const categoryName = folder.querySelector('span:nth-child(2)').textContent.toLowerCase();
+    const categoryElement = document.getElementById(`${categoryName}Category`);
+    const categoryList = categoryElement.querySelector('ul');
+
+
+
+    // hide the ul element initially
+    categoryList.style.display = 'none';
+
+    // add click event listener to folder element
+    folder.addEventListener('click', () => {
+        console.log(categoryName);
+        console.log(categoryElement);
+        console.log(categoryList);
+        // toggle the display of the ul element for the clicked folder only
+        if (categoryList.style.display === 'none') {
+            // hide all other ul elements and show the clicked one
+            Folders.forEach(f => {
+                const fCategoryName = f.querySelector('span:nth-child(2)').textContent.toLowerCase();
+                const fCategoryElement = document.getElementById(`${fCategoryName}Category`);
+                const fCategoryList = fCategoryElement.querySelector('ul');
+                if (fCategoryList !== categoryList) {
+                    fCategoryList.style.display = 'none';
+                }
+            });
+            categoryList.style.display = 'block';
+        } else {
+            categoryList.style.display = 'none';
+        }
+    });
+});

@@ -30,64 +30,64 @@
                             <span class="nav-item">Home</span>
                         </a>
                     </li>
-                    <li class="nav__item">
+                    <li class="nav__item" id="Category">
                         <a href="#Categories" class="nav__link">
                             <i class="ri-folders-line"></i>
                             <span class="nav-item">Categories 
                             <ul class="categories grid">
-                            <li id="workCategory">
+                            <li class="folders" id="workCategory">
                                 <span>💼</span>
                             <span>Work</span>
                     </li>
-                    <li id="personalCategory">
+                    <li class="folders" id="personalCategory">
                         <span>🔒</span>
                         <span>Personal</span>
                     </li>
-                    <li id="healthCategory">
+                    <li class="folders" id="healthCategory">
                         <span>🩺</span>
                         <span>Health</span>
                     </li>
-                    <li id="financeCategory">
+                    <li class="folders" id="financeCategory">
                         <span>💰</span>
                         <span>Finance</span>
                     </li>
-                    <li id="familyCategory">
+                    <li class="folders" id="familyCategory">
                         <span>👨‍👩‍👦</span>
                         <span>Family</span>
                     </li>
-                    <li id="leisureCategory">
+                    <li class="folders" id="leisureCategory">
                         <span>🧶</span>
                         <span>Leisure</span>
                     </li>
-
+                    </li>
                 </ul>
                 </span>
                 </a>
-                </li>
-                <li class="nav__item">
+
+                <li class="nav__item" id="Archive">
                     <a href="#Archive" class="nav__link">
                         <i class="ri-archive-line"></i>
                         <span class="nav-item">Archive</span>
                     </a>
                 </li>
-                <li class="nav__item">
+                <li class="nav__item" id="Trash">
                     <a href="#Trash" class="nav__link">
                         <i class="ri-delete-bin-5-line"></i>
                         <span class="nav-item">Trash</span>
                     </a>
                 </li>
-                <li class="nav__item">
+                <!-- <li class="nav__item" id="Notification">
                     <a href="#Notification" class="nav__link">
                         <i class="ri-notification-2-line"></i>
                         <span class="nav-item">Notification</span>
                     </a>
-                </li>
-                <li class="nav__item">
+                </li> -->
+                <!-- <li class="nav__item" id>
                     <a href="#Settings" class="nav__link">
                         <i class="ri-tools-line"></i>
                         <span class="nav-item">Settings</span>
                     </a>
-                </li>
+                </li> -->
                 </ul>
 
                 <div class="nav__close" id="nav-close">
@@ -95,9 +95,9 @@
                 </div>
             </div>
 
-            <div class="addItems">
+            <!-- <div class="addItems">
                 <i class="ri-add-line"></i>
-            </div>
+            </div> -->
 
             <div class="nav__buttons">
                 <i class="ri-moon-line change-theme" id="theme-button"></i>
@@ -116,7 +116,7 @@
     <section class="home" id="home">
         <div class="diary" id="diary">
             <div class="noteInput">
-                <input type="text" placeholder="How do you feel" class="feeling" />
+                <input type="text" placeholder="How do you feel" class="feelings" />
             </div>
             <div class="noteInput noteTextarea">
                 <textarea name="myThoughts" class="myThoughts" id="myThoughts" cols="30" rows="10" placeholder="What do you have in mind?"></textarea>
