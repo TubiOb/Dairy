@@ -18,103 +18,98 @@
 
 <body>
 
-    <header class="header">
-        <nav class="nav container">
-            <span href="#" class="nav__logo">Pen Thoughts</span>
 
-            <div class="nav__menu" id="nav-menu">
-                <ul class="navbar grid">
-                    <li class="nav__item" id="Home">
-                        <a href="#Home" class="nav__link active-link">
-                            <i class="ri-home-8-line"></i>
-                            <span class="nav-item">Home</span>
-                        </a>
-                    </li>
-                    <li class="nav__item" id="Category">
-                        <a href="#Categories" class="nav__link">
-                            <i class="ri-folders-line"></i>
-                            <span class="nav-item">Categories 
-                            <ul class="categories grid">
-                            <li class="folders" id="workCategory">
-                                <span>💼</span>
-                            <span>Work</span>
-                    </li>
-                    <li class="folders" id="personalCategory">
-                        <span>🔒</span>
-                        <span>Personal</span>
-                    </li>
-                    <li class="folders" id="healthCategory">
-                        <span>🩺</span>
-                        <span>Health</span>
-                    </li>
-                    <li class="folders" id="financeCategory">
-                        <span>💰</span>
-                        <span>Finance</span>
-                    </li>
-                    <li class="folders" id="familyCategory">
-                        <span>👨‍👩‍👦</span>
-                        <span>Family</span>
-                    </li>
-                    <li class="folders" id="leisureCategory">
-                        <span>🧶</span>
-                        <span>Leisure</span>
-                    </li>
-                    </li>
-                </ul>
-                </span>
+    <nav class="nav">
+        <ul class="navigation">
+            <li>
+                <a href="#" class="logo">
+                    <span href="#" class="nav-item">Pen Thoughts</span>
                 </a>
+            </li>
+            <li>
+                <a href="#Archive" class="nav__link">
+                    <i class="ri-archive-line"></i>
+                    <span class="nav-item">Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="#Trash" class="nav__link">
+                    <i class="ri-delete-bin-5-line"></i>
+                    <span class="nav-item">Trash</span>
+                </a>
+            </li>
+            <li>
+                <a href="" class="nav__link">
+                    <i class="ri-sticky-note-line"></i>
+                    <span class="nav-item">Notes</span>
+                </a>
+            </li>
+        </ul>
 
-                <li class="nav__item" id="Archive">
-                    <a href="#Archive" class="nav__link">
-                        <i class="ri-archive-line"></i>
-                        <span class="nav-item">Archive</span>
-                    </a>
-                </li>
-                <li class="nav__item" id="Trash">
-                    <a href="#Trash" class="nav__link">
-                        <i class="ri-delete-bin-5-line"></i>
-                        <span class="nav-item">Trash</span>
-                    </a>
-                </li>
-                <!-- <li class="nav__item" id="Notification">
-                    <a href="#Notification" class="nav__link">
-                        <i class="ri-notification-2-line"></i>
-                        <span class="nav-item">Notification</span>
-                    </a>
-                </li> -->
-                <!-- <li class="nav__item" id>
-                    <a href="#Settings" class="nav__link">
-                        <i class="ri-tools-line"></i>
-                        <span class="nav-item">Settings</span>
-                    </a>
-                </li> -->
+
+
+        <ul class="category">
+            <h3>
+                <span class="nav-item">Categories</span>
+            </h3>
+            <li class="folders" id="workCategory">
+                <span>💼</span>
+                <span>Work</span>
+            </li>
+            <li class="folders" id="personalCategory">
+                <span>🔒</span>
+                <span>Personal</span>
+            </li>
+            <li class="folders" id="healthCategory">
+                <span>🩺</span>
+                <span>Health</span>
+            </li>
+            <li class="folders" id="financeCategory">
+                <span>💰</span>
+                <span>Finance</span>
+            </li>
+            <li class="folders" id="familyCategory">
+                <span>👨‍👩‍👦</span>
+                <span>Family</span>
+            </li>
+            <li class="folders" id="leisureCategory">
+                <span>🧶</span>
+                <span>Leisure</span>
+            </li>
+        </ul>
+
+
+
+        <ul class="tools">
+            <li>
+                <i class="ri-user-3-line"></i>
+                <ul>
+                    <li class="User"></li>
+                    <li class="UserEmail"></li>
+                    <li class="UserPassword"></li>
                 </ul>
-
-                <div class="nav__close" id="nav-close">
-                    <i class="ri-close-line"></i>
-                </div>
-            </div>
-
-            <!-- <div class="addItems">
-                <i class="ri-add-line"></i>
-            </div> -->
-
-            <div class="nav__buttons">
+            </li>
+            <li>
                 <i class="ri-moon-line change-theme" id="theme-button"></i>
+            </li>
+            <li>
+                <i class="ri-tools-line"></i>
+                <ul>
+                    <li>Change Password</li>
+                    <li>Change Email</li>
+                </ul>
+            </li>
+        </ul>
 
-                <div class="nav__toggle" id="nav-toggle">
-                    <i class="ri-menu-4-line"></i>
-                </div>
-            </div>
-        </nav>
-    </header>
+    </nav>
+
 
 
 
 
     <!-- CALENDAR AND SORTS -->
-    <section class="home" id="home">
-        <div class="diary" id="diary">
+    <!-- <section class="home" id="home"> -->
+    <!-- <div class="diary" id="diary">
             <div class="noteInput">
                 <input type="text" placeholder="How do you feel" class="feelings" />
             </div>
@@ -157,11 +152,11 @@
             </div>
 
 
-        </div>
+        </div> -->
 
 
 
-        <!-- <div class="container1 ">
+    <!-- <div class="container1 ">
 
             <div class="left ">
                 <div class="calendar ">
@@ -229,17 +224,13 @@
 
 
 
-    </section>
+    <!-- </section> -->
 
     <!-- <div id="loading">
         <img id="loading-image" src="./img/Pen (1).png" alt="Loading...">
     </div> -->
 
 
-    <!-- FULLCALENDAR CJS -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.4/index.global.min.js "></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js "></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js "></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- MAIN JS -->
     <script src="./js/script.js "></script>
