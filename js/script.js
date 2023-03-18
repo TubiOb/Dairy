@@ -540,6 +540,7 @@ const category = document.querySelector('#Category');
 const folderCategories = document.querySelector('.categories');
 const diaryCategory = document.querySelector('.diaryCategory');
 const archive = document.querySelector('#Archive');
+const homePage = document.querySelector('#Home');
 const bin = document.querySelector('#Trash');
 const notif = document.querySelector('#Notification');
 const addNote = document.querySelector('.addNotebtn');
@@ -548,6 +549,7 @@ const noteTitle = document.querySelector('.feelings');
 const noteContent = document.querySelector('.myThoughts');
 const saveToCategory = document.querySelectorAll('.saveCategory');
 const home = document.querySelector('.home');
+const diary = document.querySelector('.diary');
 
 
 // OPENING OF THE CATEGORY LIST
@@ -555,26 +557,28 @@ if (category) {
     category.addEventListener('click', (event) => {
         console.log("reaching")
         event.stopPropagation();
-        folderCategories.classList.add('show-category');
-        folderCategories.classList.toggle('visible');
+        // folderCategories.classList.add('show-category');
+        folderCategories.style.display = 'grid';
+        // folderCategories.classList.toggle('visible');
     });
 
     document.addEventListener('click', (event) => {
         if (!folderCategories.contains(event.target)) {
             folderCategories.classList.remove('show-category');
+            folderCategories.style.display = 'none';
         }
     });
 }
 
 
-if (Folders) {
-    Folders.forEach((item) => {
-        item.addEventListener('click', () => {
-            folderCategories.classList.remove('show-FolderSelect');
-            // const showNotes = document.createElement('ul');
-        });
-    });
-}
+// if (Folders) {
+//     Folders.forEach((item) => {
+//         item.addEventListener('click', () => {
+//             folderCategories.classList.remove('show-FolderSelect');
+//             // const showNotes = document.createElement('ul');
+//         });
+//     });
+// }
 
 
 
@@ -590,13 +594,15 @@ if (addNote) {
             alert('Fields should be filled');
             return;
         }
-        selectFolder.classList.add('show-FolderSelect');
+        // selectFolder.classList.add('show-FolderSelect');
+        selectFolder.style.display = 'flex';
         selectFolder.classList.toggle('visible');
     });
 
     document.addEventListener('click', (event) => {
         if (!selectFolder.contains(event.target)) {
-            selectFolder.classList.remove('show-FolderSelect');
+            selectFolder.style.display = 'none';
+            // selectFolder.classList.remove('show-FolderSelect');
         }
     });
 }
@@ -604,7 +610,8 @@ if (addNote) {
 if (saveToCategory) {
     saveToCategory.forEach((item) => {
         item.addEventListener('click', () => {
-            selectFolder.classList.remove('show-FolderSelect');
+            selectFolder.style.display = 'none';
+            // selectFolder.classList.remove('show-FolderSelect');
             // const showNotes = document.createElement('ul');
         });
     });
@@ -613,99 +620,164 @@ if (saveToCategory) {
 
 // SAVING TO FOLDERS
 
-// add event listener to each saveCategory element
+saveToCategory.forEach(saveCategory => {
+    const categoryText = saveCategory.querySelector('span:nth-child(2)').textContent;
+    const newUl = document.createElement('ul');
+    newUl.classList.add(`${categoryText.toLowerCase()}-ul`);
+    newUl.style.display = 'none';
+    home.appendChild(newUl);
+
+
+    homePage.addEventListener('click', () => {
+        // remove any ul elements from the home section
+        const ulElements = home.querySelectorAll(`.${categoryText.toLowerCase()}-ul`);
+        ulElements.forEach(ul => ul.remove());
+
+        // show diary section
+        diary.style.display = 'flex';
+    });
+
+
+});
+
+
+
+
+// toggle display of ul when category element is clicked
+folderCategories.addEventListener('click', e => {
+    if (e.target.classList.contains('folders') || e.target.classList.contains('folderName')) {
+        const categoryText = e.target.querySelector('span:nth-child(2)').textContent.toLowerCase();
+        const ulElement = home.querySelector(`.${categoryText}-ul`);
+        if (ulElement) {
+            ulElement.style.display = 'grid';
+            diary.style.display = 'none';
+        }
+    }
+});
+
+// add note to corresponding ul when saveCategory button is clicked
 saveToCategory.forEach(saveCategory => {
     saveCategory.addEventListener('click', () => {
-        // get the text content of the span element inside saveCategory
+        selectFolder.classList.remove('show-FolderSelect');
         const categoryText = saveCategory.querySelector('span:nth-child(2)').textContent;
-
-        // get the corresponding folders element
-        const foldersElement = document.getElementById(`${categoryText.toLowerCase()}Category`);
-
-        // check if a ul element already exists
-        let ulElement = foldersElement.querySelector('ul');
-        if (!ulElement) {
-            // create a new ul element if none exists
-            ulElement = document.createElement('ul');
-            foldersElement.appendChild(ulElement);
-        }
-
-        // create a new li element
+        const ulElement = home.querySelector(`.${categoryText.toLowerCase()}-ul`);
         const newLi = document.createElement('li');
-
-        // add current date and month to the li
         const date = new Date();
         const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         const dateText = `${monthNames[date.getMonth()]} ${date.getDate()}`;
         const dateElement = document.createElement('span');
         dateElement.textContent = dateText;
         newLi.appendChild(dateElement);
-
-        // add note title and content to the li
         const titleElement = document.createElement('h2');
         titleElement.textContent = noteTitle.value;
         newLi.appendChild(titleElement);
-
         const contentElement = document.createElement('p');
         contentElement.textContent = noteContent.value;
         newLi.appendChild(contentElement);
 
 
-        // loop through all Folders and find the matching category name
-        Folders.forEach(folder => {
-            const folderCategoryName = folder.querySelector('span:nth-child(2)').textContent.toLowerCase();
-            if (folderCategoryName === categoryText.toLowerCase()) {
-                // add new li element to the corresponding ul element under the matching folder
-                let folderUlElement = folder.querySelector('ul');
-                if (!folderUlElement) {
-                    folderUlElement = document.createElement('ul');
-                    folder.appendChild(folderUlElement);
-                }
-                folderUlElement.appendChild(newLi);
-                alert("Saved!");
-                noteTitle.value = "";
-                noteContent.value = "";
-                // selectFolder.classList.remove('show-FolderSelect');
-                home.appendChild(folderUlElement);
-            }
+        const iconElement = document.createElement('div');
+        newLi.appendChild(iconElement);
+        // Create archive icon
+        const archiveIcon = document.createElement('i');
+        archiveIcon.classList.add('ri-archive-line');
+        archiveIcon.style.display = 'none';
+        archiveIcon.addEventListener('click', () => {
+            newLi.remove();
+            const archivedLi = newLi.cloneNode(true);
+            archivedLi.querySelector('i').remove();
+            archiveList.appendChild(archivedLi);
+            alert("Archived!");
+        });
+        iconElement.appendChild(archiveIcon);
+        // newLi.appendChild(archiveIcon);
+
+        // Create delete icon
+        const deleteIcon = document.createElement('i');
+        deleteIcon.classList.add('ri-delete-bin-line');
+        deleteIcon.style.display = 'none';
+        deleteIcon.addEventListener('click', () => {
+            newLi.remove();
+            const deletedLi = newLi.cloneNode(true);
+            deletedLi.querySelector('i').remove();
+            binList.appendChild(deletedLi);
+            alert("Deleted!");
+        });
+        iconElement.appendChild(deleteIcon);
+        // newLi.appendChild(deleteIcon);
+
+
+        // Show/hide icons on hover
+        newLi.addEventListener('mouseenter', () => {
+            // archiveIcon.style.display = 'block';
+            // deleteIcon.style.display = 'block';
+            iconElement.style.display = 'flex';
+        });
+        newLi.addEventListener('mouseleave', () => {
+            // archiveIcon.style.display = 'none';
+            // deleteIcon.style.display = 'none';
+            iconElement.style.display = 'none'
         });
 
+
+
+        ulElement.appendChild(newLi);
+        noteTitle.value = "";
+        noteContent.value = "";
+        alert("Saved!");
     });
 });
 
 
 
+
+
 // RETURN/SHOW UL ELEMENT FOR EACH FOLDER CATEGORY
+// Add event listener to each folder element
 Folders.forEach(folder => {
-    // stopPropagation();
-    const categoryName = folder.querySelector('span:nth-child(2)').textContent.toLowerCase();
-    const categoryElement = document.getElementById(`${categoryName}Category`);
-    const categoryList = categoryElement.querySelector('ul');
-
-
-
-    // hide the ul element initially
-    categoryList.style.display = 'none';
-
-    // add click event listener to folder element
     folder.addEventListener('click', () => {
-        console.log(categoryName);
-        console.log(categoryElement);
-        console.log(categoryList);
-        // toggle the display of the ul element for the clicked folder only
-        if (categoryList.style.display === 'none') {
-            // hide all other ul elements and show the clicked one
-            Folders.forEach(f => {
-                const fCategoryName = f.querySelector('span:nth-child(2)').textContent.toLowerCase();
-                const fCategoryElement = document.getElementById(`${fCategoryName}Category`);
-                const fCategoryList = fCategoryElement.querySelector('ul');
-                if (fCategoryList !== categoryList) {
-                    fCategoryList.style.display = 'none';
-                }
-            });
-            categoryList.style.display = 'block';
-        } else {
-            categoryList.style.display = 'none';
-        }
+        const categoryText = folder.querySelector('span:nth-child(2)').textContent;
+        const ulElement = document.querySelector(`.${categoryText.toLowerCase()}-ul`);
+        // hide diary section
+        // selectFolder.classList.remove('show-FolderSelect');
+        folderCategories.style.display = 'none';
+        // alert('SCREEAAAAMMMMMM');
+        // alert(categoryText)
+        // alert(ulElement)
+        diary.style.display = 'none';
+
+        ulElement.style.display = 'grid';
     });
+});
+
+
+// CREATING THE ARCHIVE AND DELETE DIVS/UL
+const archiveList = document.createElement('ul');
+archiveList.classList.add('archive-list');
+// archive.appendChild(archiveList);
+home.appendChild(archiveList);
+archiveList.style.display = 'none';
+
+
+//  Create delete div/ul
+const binList = document.createElement('ul');
+binList.classList.add('bin-list');
+// bin.appendChild(binList);
+home.appendChild(binList);
+binList.style.display = 'none';
+
+
+// ADDING FUNCTIONALITY TO BIN AND ARCHIVE
+archive.addEventListener('click', () => {
+    alert('SCREEAAAAMMMMMM');
+    diary.style.display = 'none';
+    // ulElement.style.display = 'none';
+    archiveList.style.display = 'grid';
+});
+
+bin.addEventListener('click', () => {
+    alert('ABBBEEEEEEGGGGGG');
+    diary.style.display = 'none';
+    // ulElement.style.display = 'none';
+    binList.style.display = 'grid';
 });

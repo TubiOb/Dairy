@@ -199,8 +199,8 @@
             border-radius: 1rem;
             text-align: center;
             align-items: center;
-            bottom: -80%;
-            /* display: none; */
+            bottom: 10rem;
+            display: none;
             /* display should be grid  */
         }
         .myCategories {
@@ -214,14 +214,11 @@
             transform: translate(-50%, -50%);
             transition: background .4s;
             background-color: var(--bg-color);
-            /* background-color: transparent; */
             text-align: center;
-            z-index: 1000;
-            /* align-items: center; */
             border-radius: 1rem;
             box-shadow: 0 4px 20px hsla(207, 24%, 35%, .1);
-            top: -80%;
-            /* display: none; */
+            top: 15rem;
+            display: none;
         }
         .diary {
             width: 70%;
@@ -234,9 +231,10 @@
     }
     
     .navbar {
+        height: auto;
         grid-template-columns: repeat(2, max-content);
         justify-content: center;
-        gap: 2rem 3rem;
+        gap: 2rem 2rem;
         transition: background .4s;
     }
     
@@ -269,14 +267,13 @@
     .show-menu {
         bottom: 2rem;
     }
-    
-    .show-category {
+    /* .show-category {
         bottom: 10rem;
     }
     
     .show-FolderSelect {
         top: 15rem;
-    }
+    } */
     
     .active-link {
         color: var(--title-color);
@@ -299,7 +296,8 @@
         padding: .2rem;
         color: var(--title-color);
         font-size: var(--h3-font-size);
-        /* display: none; */
+        background-color: var(--bg-color);
+        display: none;
     }
     
     .categories .folders ul li {
@@ -313,7 +311,7 @@
     .categories .folders ul li span {
         position: absolute;
         top: 0;
-        left: 0;
+        left: 10px;
         font-size: 14px;
         font-weight: bold;
     }
@@ -358,10 +356,123 @@
         padding: 20px 10px;
         justify-content: space-between;
         align-items: center;
+        border: none;
+        outline: none;
+    }
+    
+    .work-ul,
+    .personal-ul,
+    .health-ul,
+    .finance-ul,
+    .family-ul,
+    .leisure-ul {
+        position: relative;
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, auto));
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        grid-gap: 20px;
+        padding: .2rem;
+        border: none;
+        outline: none;
+        color: var(--title-color);
+        font-size: var(--h3-font-size);
+        background-color: var(--bg-color);
+        border-radius: 10px;
+        display: none;
+    }
+    
+    .work-ul li,
+    .personal-ul li,
+    .health-ul li,
+    .finance-ul li,
+    .family-ul li,
+    .leisure-ul li {
+        width: 150px;
+        height: auto;
+        border: none;
+        outline: none;
+        background-color: var(--bg-color);
+        border-radius: 10px;
+        padding: 20px;
+        position: relative;
+        box-shadow: 0 4px 20px hsla(207, 24%, 35%, .4);
+    }
+    
+    .work-ul li span,
+    .personal-ul li span,
+    .health-ul li span,
+    .finance-ul li span,
+    .family-ul li span,
+    .leisure-ul li span {
+        position: absolute;
+        top: 5px;
+        left: 10px;
+        font-size: 14px;
+        font-weight: bold;
+        color: var(--text-color-light);
+    }
+    
+    .work-ul li h2,
+    .personal-ul li h2,
+    .health-ul li h2,
+    .finance-ul li h2,
+    .family-ul li h2,
+    .leisure-ul li h2 {
+        margin-top: 20px;
+        font-size: var(--h2-font-size);
+    }
+    
+    .work-ul li p,
+    .personal-ul li p,
+    .health-ul li p,
+    .finance-ul li p,
+    .family-ul li p,
+    .leisure-ul li p {
+        margin-top: 10px;
+        font-size: var(--p-font);
+        color: var(--text-color-light);
+    }
+    /* .work-ul li div,
+    .personal-ul li div,
+    .health-ul li div,
+    .finance-ul li div,
+    .family-ul li div,
+    .leisure-ul li div {
+        display: none;
+    } */
+    
+    .work-ul li:hover div,
+    .personal-ul li:hover div,
+    .health-ul li:hover div,
+    .finance-ul li:hover div,
+    .family-ul li:hover div,
+    .leisure-ul li:hover div {
+        display: flex;
+        position: absolute;
+        bottom: 5px;
+        right: 10px;
+        gap: 2px;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        width: 10px;
+        height: 10px;
+        padding: .5rem;
+    }
+    
+    .work-ul li:hover div i,
+    .personal-ul li:hover div i,
+    .health-ul li:hover div i,
+    .finance-ul li:hover div i,
+    .family-ul li:hover div i,
+    .leisure-ul li:hover div i {
+        font-size: 1.25rem;
+        color: var(--text-color-light);
     }
     
     .diary {
-        order: 1;
+        position: relative;
         width: 90%;
         height: auto;
         display: flex;
@@ -1117,6 +1228,26 @@
         .diary {
             margin: 30px auto;
         }
+        .categories {
+            position: fixed;
+            width: 90%;
+            left: 5%;
+            right: 0;
+            /* z-index: 1000; */
+            grid-template-columns: repeat(3, max-content);
+            justify-content: center;
+            gap: 2rem 2rem;
+            transition: background .4s;
+            background-color: var(--bg-color);
+            box-shadow: 0 4px 20px hsla(207, 24%, 35%, .5);
+            padding: .5rem;
+            border-radius: 1rem;
+            text-align: center;
+            align-items: center;
+            bottom: 10rem;
+            display: none;
+            /* display should be grid  */
+        }
         /* .container1 {
             position: relative;
             width: 90%;
@@ -1141,6 +1272,26 @@
         }
         .diary {
             margin: 30px auto 90px auto;
+        }
+        .categories {
+            position: fixed;
+            width: 50%;
+            left: 25%;
+            right: 0;
+            /* z-index: 1000; */
+            grid-template-columns: repeat(3, max-content);
+            justify-content: center;
+            gap: 2rem 2rem;
+            transition: background .4s;
+            background-color: var(--bg-color);
+            box-shadow: 0 4px 20px hsla(207, 24%, 35%, .5);
+            padding: .5rem;
+            border-radius: 1rem;
+            text-align: center;
+            align-items: center;
+            bottom: 10rem;
+            display: none;
+            /* display should be grid  */
         }
     }
     /* @media (max-width: 1000px) {
@@ -1254,6 +1405,26 @@
         }
         .diary {
             margin: 30px auto 90px auto;
+        }
+        .categories {
+            position: fixed;
+            width: 35%;
+            left: 30%;
+            right: 0;
+            /* z-index: 1000; */
+            grid-template-columns: repeat(3, max-content);
+            justify-content: center;
+            gap: 2rem 2rem;
+            transition: background .4s;
+            background-color: var(--bg-color);
+            box-shadow: 0 4px 20px hsla(207, 24%, 35%, .5);
+            padding: .5rem;
+            border-radius: 1rem;
+            text-align: center;
+            align-items: center;
+            bottom: 10rem;
+            display: none;
+            /* display should be grid  */
         }
         /* .container1 {
             width: 90%;
@@ -1384,20 +1555,21 @@
         }
         .categories {
             position: fixed;
-            left: -870px;
-            top: 20%;
-            width: 10rem;
-            /* height: 10rem; */
-            z-index: 3000;
-            /* grid-template-columns: repeat(1, max-content);
-        justify-content: center;
-        gap: 2rem 2rem; */
-            gap: 1rem;
-            display: flex;
-            flex-direction: column;
+            width: 30%;
+            left: 15%;
+            right: 0;
+            grid-template-columns: repeat(3, max-content);
+            justify-content: center;
+            gap: 2rem 2rem;
             transition: background .4s;
+            background-color: var(--bg-color);
+            box-shadow: 0 4px 20px hsla(207, 24%, 35%, .5);
+            padding: .5rem;
+            border-radius: 1rem;
+            text-align: center;
+            align-items: center;
             display: none;
-            /* display should be grid  */
+            cursor: pointer;
         }
         .categories li {
             display: flex;
@@ -1463,14 +1635,30 @@
             position: relative;
             top: 3rem;
             left: 4.1rem;
-            width: 100%;
+            width: 95%;
             /* height: 800px; */
             padding: 2rem;
             /* gap: 20px; */
             /* align-items: center; */
         }
         .diary {
-            width: 25%;
+            width: 35%;
+        }
+        .myCategories {
+            position: fixed;
+            flex-direction: column;
+            width: 300px;
+            height: auto;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: background .4s;
+            background-color: var(--bg-color);
+            text-align: center;
+            border-radius: 1rem;
+            box-shadow: 0 4px 20px hsla(207, 24%, 35%, .5);
+            top: 20rem;
+            display: none;
+            cursor: pointer;
         }
         /* .container1 {
             position: relative;
@@ -1516,6 +1704,75 @@
         .container {
             margin-inline: auto;
         }
+        .categories {
+            position: fixed;
+            width: 30%;
+            left: 15%;
+            right: 0;
+            grid-template-columns: repeat(3, max-content);
+            justify-content: center;
+            gap: 2rem 2rem;
+            transition: background .4s;
+            background-color: var(--bg-color);
+            box-shadow: 0 4px 20px hsla(207, 24%, 35%, .5);
+            padding: .5rem;
+            border-radius: 1rem;
+            text-align: center;
+            align-items: center;
+            display: none;
+            cursor: pointer;
+        }
+        .myCategories {
+            position: fixed;
+            flex-direction: column;
+            width: 300px;
+            height: auto;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: background .4s;
+            background-color: var(--bg-color);
+            text-align: center;
+            border-radius: 1rem;
+            box-shadow: 0 4px 20px hsla(207, 24%, 35%, .5);
+            top: 20rem;
+            display: none;
+            cursor: pointer;
+        }
     }
     
-    @media(min-width: 1200px) {}
+    @media(min-width: 1200px) {
+        .categories {
+            position: fixed;
+            width: 20%;
+            left: 15%;
+            right: 0;
+            grid-template-columns: repeat(3, max-content);
+            justify-content: center;
+            gap: 2rem 1rem;
+            transition: background .4s;
+            background-color: var(--bg-color);
+            box-shadow: 0 4px 20px hsla(207, 24%, 35%, .5);
+            padding: .5rem;
+            border-radius: 1rem;
+            text-align: center;
+            align-items: center;
+            display: none;
+            cursor: pointer;
+        }
+        /* .myCategories {
+            position: fixed;
+            flex-direction: column;
+            width: 300px;
+            height: auto;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: background .4s;
+            background-color: var(--bg-color);
+            text-align: center;
+            border-radius: 1rem;
+            box-shadow: 0 4px 20px hsla(207, 24%, 35%, .1);
+            top: 20rem;
+            display: none;
+            cursor: pointer;
+        } */
+    }
