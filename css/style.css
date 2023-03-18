@@ -834,7 +834,7 @@
     }
     
     #loading-image {
-        background-image: url('./img/Pen (1).png');
+        /* background-image: url('./img/Pen (1).png'); */
         background-repeat: no-repeat;
         background-size: contain;
         width: 200px;
