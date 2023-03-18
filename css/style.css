@@ -839,7 +839,7 @@
         background-size: contain;
         width: 200px;
         height: 200px;
-        animation: flip 1s linear infinite;
+        animation: flip 1s linear 4s;
     }
     
     @keyframes flip {
