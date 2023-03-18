@@ -780,3 +780,18 @@ bin.addEventListener('click', () => {
     // ulElement.style.display = 'none';
     binList.style.display = 'grid';
 });
+
+
+
+// 
+window.addEventListener('load', function() {
+    // show loading spinner
+    var loading = document.getElementById('loading');
+    loading.style.display = 'flex';
+
+    // wait for delay time
+    setTimeout(function() {
+        // hide loading spinner
+        loading.style.display = 'none';
+    }, 3000); // 3 second delay
+});
