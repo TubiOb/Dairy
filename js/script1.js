@@ -55,6 +55,8 @@ SignIn.addEventListener('click', () => {
         console.log(SignInPass.value);
         if (LoginUsername.value.match(nameRegex) || SignInPass.value.match(Passwrdformat)) {
             alert("Welcome back, " + LoginUsername.value + "!");
+            LoginUsername.value = "";
+            SignInPass.value = "";
             var url = './diary.html';
             window.open(url, '_self');
             return;

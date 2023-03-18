@@ -739,7 +739,6 @@ Folders.forEach(folder => {
         const categoryText = folder.querySelector('span:nth-child(2)').textContent;
         const ulElement = document.querySelector(`.${categoryText.toLowerCase()}-ul`);
         // hide diary section
-        // selectFolder.classList.remove('show-FolderSelect');
         folderCategories.style.display = 'none';
         // alert('SCREEAAAAMMMMMM');
         // alert(categoryText)
@@ -782,14 +781,11 @@ bin.addEventListener('click', () => {
     binList.style.display = 'grid';
 });
 
-
-// window.onload = function() {
-//     if (window.location.href !== "index.html") {
-//         window.location.href = "index.html";
+// window.onbeforeunload = function() {
+//     // Redirect the user back to index.html
+//     if (window.location.href.includes('diary.html')) {
+//         // window.location.href = 'index.html';
+//         window.location.replace("index.html");
 //     }
-// }
 
-
-if (performance.navigation.type === 1) {
-    window.location.href = "index.html";
-}
+// };
