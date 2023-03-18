@@ -1640,6 +1640,37 @@
             display: none;
             /* display should be grid  */
         }
+        #Home1 {
+            width: 90%;
+            max-width: 80%;
+            height: 450px;
+            justify-content: center;
+            justify-items: center;
+            align-items: center;
+            align-content: center;
+        }
+        #Home1 h1 {
+            font-size: 13px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #Home1 form input[type="button"] {
+            width: 90px;
+        }
+        .overlay-left {
+            left: 5%;
+            transform: translateX(-25%);
+        }
+        #Home1.right-panel-active .overlay-left {
+            transform: translateX(-17px);
+        }
+        .overlay-right {
+            right: 6%;
+            transform: translateX(3%);
+        }
+        #Home1.right-panel-active .overlay-right {
+            transform: translateX(3%);
+        }
         /* .container1 {
             width: 90%;
             height: auto;
