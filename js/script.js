@@ -780,12 +780,3 @@ bin.addEventListener('click', () => {
     // ulElement.style.display = 'none';
     binList.style.display = 'grid';
 });
-
-// window.onbeforeunload = function() {
-//     // Redirect the user back to index.html
-//     if (window.location.href.includes('diary.html')) {
-//         // window.location.href = 'index.html';
-//         window.location.replace("index.html");
-//     }
-
-// };
