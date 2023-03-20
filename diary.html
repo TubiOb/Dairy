@@ -19,27 +19,27 @@
 <body>
 
 
-    <nav class="nav">
+    <nav>
         <ul class="navigation">
             <li>
                 <a href="#" class="logo">
                     <span href="#" class="nav-item">Pen Thoughts</span>
                 </a>
             </li>
-            <li>
-                <a href="#Archive" class="nav__link">
+            <li id="Archive">
+                <a href="#">
                     <i class="ri-archive-line"></i>
                     <span class="nav-item">Archive</span>
                 </a>
             </li>
-            <li>
-                <a href="#Trash" class="nav__link">
+            <li id="Trash">
+                <a href="#">
                     <i class="ri-delete-bin-5-line"></i>
                     <span class="nav-item">Trash</span>
                 </a>
             </li>
-            <li>
-                <a href="" class="nav__link">
+            <li id="Notes">
+                <a href="#">
                     <i class="ri-sticky-note-line"></i>
                     <span class="nav-item">Notes</span>
                 </a>
@@ -48,55 +48,84 @@
 
 
 
-        <ul class="category">
-            <h3>
-                <span class="nav-item">Categories</span>
-            </h3>
+        <ul class="category" id="accordion">
+            <li>
+                <h3>Categories</h3>
+            </li>
             <li class="folders" id="workCategory">
-                <span>💼</span>
-                <span>Work</span>
+                <div class="link">
+                    <span class="icon">💼</span>
+                    <span class="cat-item">Work</span>
+                    <i class="ri-arrow-down-s-line"></i>
+                </div>
+                <ul class="submenu"></ul>
             </li>
             <li class="folders" id="personalCategory">
-                <span>🔒</span>
-                <span>Personal</span>
+                <div class="link">
+                    <span class="icon">🔒</span>
+                    <span class="cat-item">Personal</span>
+                    <i class="ri-arrow-down-s-line"></i>
+                </div>
+                <ul class="submenu"></ul>
             </li>
             <li class="folders" id="healthCategory">
-                <span>🩺</span>
-                <span>Health</span>
+                <div class="link">
+                    <span class="icon">🩺</span>
+                    <span class="cat-item">Health</span>
+                    <i class="ri-arrow-down-s-line"></i>
+                </div>
+                <ul class="submenu"></ul>
             </li>
             <li class="folders" id="financeCategory">
-                <span>💰</span>
-                <span>Finance</span>
+                <div class="link">
+                    <span class="icon">💰</span>
+                    <span class="cat-item">Finance</span>
+                    <i class="ri-arrow-down-s-line"></i>
+                </div>
+                <ul class="submenu"></ul>
             </li>
             <li class="folders" id="familyCategory">
-                <span>👨‍👩‍👦</span>
-                <span>Family</span>
+                <div class="link">
+                    <span class="icon">👨‍👩‍👦</span>
+                    <span class="cat-item">Family</span>
+                    <i class="ri-arrow-down-s-line"></i>
+                </div>
+                <ul class="submenu"></ul>
             </li>
-            <li class="folders" id="leisureCategory">
-                <span>🧶</span>
-                <span>Leisure</span>
-            </li>
+            <!-- <li class="folders" id="leisureCategory">
+                <div class="link">
+                    <span class="icon">🧶</span>
+                    <span class="cat-item">Leisure</span>
+                    <i class="ri-arrow-down-s-line"></i>
+                </div>
+                <ul class="submenu"></ul>
+            </li> -->
         </ul>
 
 
 
-        <ul class="tools">
+        <ul class="tools" id="accordion1">
             <li>
-                <i class="ri-user-3-line"></i>
-                <ul>
+                <div class="link">
+                    <i class="ri-user-3-line person"></i>
+                </div>
+                <ul class="submenu">
                     <li class="User"></li>
                     <li class="UserEmail"></li>
                     <li class="UserPassword"></li>
                 </ul>
             </li>
             <li>
-                <i class="ri-moon-line change-theme" id="theme-button"></i>
+                <div class="link">
+                    <i class="ri-moon-line change-theme" id="theme-button"></i>
+                </div>
             </li>
             <li>
-                <i class="ri-tools-line"></i>
-                <ul>
+                <div class="link">
+                    <i class="ri-tools-line person"></i>
+                </div>
+                <ul class="submenu">
                     <li>Change Password</li>
-                    <li>Change Email</li>
                 </ul>
             </li>
         </ul>

@@ -1,35 +1,3 @@
-const navMenu = document.querySelector('#nav-menu'),
-    navToggle = document.querySelector('#nav-toggle'),
-    navClose = document.querySelector('#nav-close');
-
-
-if (navToggle) {
-    navToggle.addEventListener('click', () => {
-        navMenu.classList.add('show-menu');
-    })
-}
-
-if (navClose) {
-    navClose.addEventListener('click', () => {
-        navMenu.classList.remove('show-menu');
-    })
-}
-
-
-
-// REMOVE MOBILE MENU
-const navLink = document.querySelectorAll('.nav__link');
-
-const linkAction = () => {
-
-    const navMenu = document.querySelector('#nav-menu');
-
-    navMenu.classList.remove('show-menu');
-};
-navLink.forEach(n => n.addEventListener('click', linkAction));
-
-
-
 // DARK THEME/MODE
 let themeButton = document.querySelector('#theme-button');
 
@@ -530,6 +498,39 @@ themeButton.onclick = () => {
 //     time = timeHour + ":" + timeMin + " " + timeFormat;
 //     return time;
 // }
+
+
+
+
+// MENU TOGGLE FUNCTION
+$(function() {
+    var Accordion = function(el, multiple) {
+        this.el = el || {};
+        this.multiple = multiple || false;
+
+        // Variables privadas
+        var links = this.el.find('.link');
+        // Evento
+        links.on('click', { el: this.el, multiple: this.multiple }, this.dropdown)
+    }
+
+    Accordion.prototype.dropdown = function(e) {
+        var $el = e.data.el;
+        $this = $(this),
+            $next = $this.next();
+
+        $next.slideToggle();
+        $this.parent().toggleClass('open');
+
+        if (!e.data.multiple) {
+            $el.find('.submenu').not($next).slideUp().parent().removeClass('open');
+        };
+    }
+
+    var accordion = new Accordion($('#accordion'), false);
+    var accordion1 = new Accordion($('#accordion1'), false);
+});
+
 
 
 
