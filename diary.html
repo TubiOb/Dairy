@@ -131,6 +131,15 @@
     <!-- HOME PAGE -->
     <section class="home" id="home">
         <div class="diary" id="diary">
+            <select>
+                    <option value="" disabled selected hidden>Save to Category</option>
+                    <option class="category" value="Work">Work</option>
+                    <option class="category" value="Personal">Personal</option>
+                    <option class="category" value="Health">Health</option>
+                    <option class="category" value="Finance">Finance</option>
+                    <option class="category" value="Family">Family</option>
+            </select>
+
             <div class="noteInput">
                 <input type="text" placeholder="How do you feel" class="feelings" />
             </div>
@@ -141,73 +150,52 @@
                 <button class="addNotebtn">Add Note</button>
             </div>
 
-
-
-
         </div>
 
         <aside class="sidecontent">
-            <div class="myCategories" id="myCategories">
-                <h3>Select a Folder/Category</h3>
-                <ul class="diaryCategory grid">
-                    <li class="saveCategory">
-                        <span>💼</span>
-                        <span>Work</span>
-                    </li>
-                    <li class="saveCategory">
-                        <span>🔒</span>
-                        <span>Personal</span>
-                    </li>
-                    <li class="saveCategory">
-                        <span>🩺</span>
-                        <span>Health</span>
-                    </li>
-                    <li class="saveCategory">
-                        <span>💰</span>
-                        <span>Finance</span>
-                    </li>
-                    <li class="saveCategory">
-                        <span>👨‍👩‍👦</span>
-                        <span>Family</span>
-                    </li>
-                    <li class="saveCategory">
-                        <span>🧶</span>
-                        <span>Leisure</span>
-                    </li>
-
-                </ul>
+            <div class="categoryFilter">
+                <select>
+                    <option value="" disabled selected hidden>Filter by category</option>
+                    <option class="filterBy" value="Work">Work</option>
+                    <option class="filterBy" value="Personal">Personal</option>
+                    <option class="filterBy" value="Health">Health</option>
+                    <option class="filterBy" value="Finance">Finance</option>
+                    <option class="filterBy" value="Family">Family</option>
+                </select>
             </div>
+
+            <div class="notesTab"></div>
         </aside>
 
     </section>
 
-    <!-- <div id="loading">
-        <img id="loading-image" src="./img/Pen (1).png" alt="Loading...">
+    <!-- <div id=" loading ">
+        <img id="loading-image " src="./img/Pen (1).png " alt="Loading... ">
     </div> -->
-    <!-- <div class="myCategories" id="myCategories">
+    <!-- <div class="myCategories " id="myCategories ">
         <h3>Select a Folder/Category</h3>
-        <ul class="diaryCategory grid">
-            <li class="saveCategory">
+        <ul class="diaryCategory grid ">
+            <li class="saveCategory ">
                 <span>💼</span>
                 <span>Work</span>
             </li>
-            <li class="saveCategory">
+            <li class="saveCategory ">
                 <span>🔒</span>
                 <span>Personal</span>
             </li>
-            <li class="saveCategory">
+            <li class="saveCategory ">
                 <span>🩺</span>
                 <span>Health</span>
             </li>
-            <li class="saveCategory">
+            <li class="saveCategory ">
                 <span>💰</span>
                 <span>Finance</span>
             </li>
-            <li class="saveCategory">
+            <li class="saveCategory ">
                 <span>👨‍👩‍👦</span>
                 <span>Family</span>
             </li>
-            <li class="saveCategory">
+            <li class="saveCategory ">
                 <span>🧶</span>
                 <span>Leisure</span>
             </li>
@@ -215,7 +203,7 @@
         </ul>
     </div> -->
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js "></script>
     <!-- MAIN JS -->
     <script src="./js/script.js "></script>
 
