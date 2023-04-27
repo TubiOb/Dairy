@@ -289,11 +289,12 @@ nav:hover {
 .tools li.open i {
     color: var(--title-color);
     font-weight: 600;
-    top: 55%;
+    top: 65%;
+    right: 20px;
     transform: rotateX(-180deg);
-    -webkit-transform: rotate(180deg);
-    -ms-transform: rotate(180deg);
-    -o-transform: rotate(180deg);
+    -webkit-transform: rotateX(180deg);
+    -ms-transform: rotateX(180deg);
+    -o-transform: rotateX(180deg);
 }
 
 
@@ -393,6 +394,7 @@ select option {
 
 .diary select,
 .diary select option {
+    width: 30%;
     margin-top: 20px;
     outline: none;
     border: none;
@@ -474,8 +476,8 @@ select option {
 }
 
 .addNote .addNotebtn:hover {
-    background-color: transparent;
-    color: var(--bg-color);
+    background-color: var(--text-color-light);
+    color: var(--card-color);
 }
 
 .sidecontent {
@@ -487,6 +489,8 @@ select option {
     padding: .5em;
     box-shadow: 0 0 18px 0 rgba(35, 35, 35, .3);
     min-height: 400px;
+    flex-direction: column;
+    height: auto;
 }
 
 .sidecontent .categoryFilter {
@@ -527,10 +531,14 @@ select option {
 /* DIARY NOTE TILE */
 
 .notesTab {
-    width: 600px;
+    width: 100%;
     height: auto;
-    background-color: #23383a;
+    min-height: 450px;
+    background-color: var(--bg-color);
     position: relative;
+    border: none;
+    outline: none;
+    box-shadow: 0 0 10px 0 rgba(35, 35, 35, .1);
 }
 
 

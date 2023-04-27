@@ -14,33 +14,33 @@ themeButton.onclick = () => {
 
 
 // MENU TOGGLE FUNCTION
-// $(function() {
-//     var Accordion = function(el, multiple) {
-//         this.el = el || {};
-//         this.multiple = multiple || false;
+$(function() {
+    var Accordion = function(el, multiple) {
+        this.el = el || {};
+        this.multiple = multiple || false;
 
-//         // Variables privadas
-//         var links = this.el.find('.link');
-//         // Evento
-//         links.on('click', { el: this.el, multiple: this.multiple }, this.dropdown)
-//     }
+        // Variables privadas
+        var links = this.el.find('.link');
+        // Evento
+        links.on('click', { el: this.el, multiple: this.multiple }, this.dropdown)
+    }
 
-//     Accordion.prototype.dropdown = function(e) {
-//         var $el = e.data.el;
-//         $this = $(this),
-//             $next = $this.next();
+    Accordion.prototype.dropdown = function(e) {
+        var $el = e.data.el;
+        $this = $(this),
+            $next = $this.next();
 
-//         $next.slideToggle();
-//         $this.parent().toggleClass('open');
+        $next.slideToggle();
+        $this.parent().toggleClass('open');
 
-//         if (!e.data.multiple) {
-//             $el.find('.submenu').not($next).slideUp().parent().removeClass('open');
-//         };
-//     }
+        if (!e.data.multiple) {
+            $el.find('.submenu').not($next).slideUp().parent().removeClass('open');
+        };
+    }
 
-//     var accordion = new Accordion($('#accordion'), false);
-//     var accordion1 = new Accordion($('#accordion1'), false);
-// });
+    var accordion = new Accordion($('#accordion'), false);
+    var accordion1 = new Accordion($('#accordion1'), false);
+});
 
 
 
@@ -62,6 +62,8 @@ const noteContent = document.querySelector('.myThoughts');
 const saveToCategory = document.querySelectorAll('.saveCategory');
 const home = document.querySelector('.home');
 const diary = document.querySelector('.diary');
+var selectElement = document.getElementById("my-select");
+var selectedOption = selectElement.options[selectElement.selectedIndex].value;
 
 
 // OPENING OF THE CATEGORY LIST
@@ -107,16 +109,24 @@ if (addNote) {
             return;
         }
         // selectFolder.classList.add('show-FolderSelect');
-        selectFolder.style.display = 'flex';
-        selectFolder.classList.toggle('visible');
+        // selectFolder.style.display = 'flex';
+        // selectFolder.classList.toggle('visible');
+        selectElement.addEventListener("change", function() {
+            if (!selectedOption.disabled || selectedOption !== "") {
+                alert("Selected option: " + selectedOption);
+            } else {
+                alert("Please select folder to be saved to")
+            }
+        });
+
     });
 
-    document.addEventListener('click', (event) => {
-        if (!selectFolder.contains(event.target)) {
-            selectFolder.style.display = 'none';
-            // selectFolder.classList.remove('show-FolderSelect');
-        }
-    });
+    // document.addEventListener('click', (event) => {
+    //     if (!selectFolder.contains(event.target)) {
+    //         selectFolder.style.display = 'none';
+    //         // selectFolder.classList.remove('show-FolderSelect');
+    //     }
+    // });
 }
 
 if (saveToCategory) {
