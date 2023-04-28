@@ -22,8 +22,15 @@ $(function() {
         // Variables privadas
         var links = this.el.find('.link');
         // Evento
-        links.on('click', { el: this.el, multiple: this.multiple }, this.dropdown)
-    }
+        links.on('click', { el: this.el, multiple: this.multiple }, this.dropdown);
+
+        // Click event listener on document
+        $(document).on('click', function(e) {
+            if (!$(e.target).closest('.link').length) {
+                links.parent().removeClass('open');
+            }
+        });
+    };
 
     Accordion.prototype.dropdown = function(e) {
         var $el = e.data.el;
@@ -48,7 +55,7 @@ $(function() {
 
 // FUNCTIONALITES OF THE NAVBAR/SIDEBAR UL ELEMENTS
 const Folders = document.querySelectorAll('.folders')
-const category = document.querySelector('#Category');
+    // const category = document.querySelector('#Category');
 const folderCategories = document.querySelector('.categories');
 const diaryCategory = document.querySelector('.diaryCategory');
 const archive = document.querySelector('#Archive');
@@ -62,37 +69,9 @@ const noteContent = document.querySelector('.myThoughts');
 const saveToCategory = document.querySelectorAll('.saveCategory');
 const home = document.querySelector('.home');
 const diary = document.querySelector('.diary');
+const noteTab = document.querySelector('.notesTab');
 var selectElement = document.getElementById("my-select");
-var selectedOption = selectElement.options[selectElement.selectedIndex].value;
-
-
-// OPENING OF THE CATEGORY LIST
-if (category) {
-    category.addEventListener('click', (event) => {
-        console.log("reaching")
-        event.stopPropagation();
-        // folderCategories.classList.add('show-category');
-        folderCategories.style.display = 'grid';
-        // folderCategories.classList.toggle('visible');
-    });
-
-    document.addEventListener('click', (event) => {
-        if (!folderCategories.contains(event.target)) {
-            folderCategories.classList.remove('show-category');
-            folderCategories.style.display = 'none';
-        }
-    });
-}
-
-
-// if (Folders) {
-//     Folders.forEach((item) => {
-//         item.addEventListener('click', () => {
-//             folderCategories.classList.remove('show-FolderSelect');
-//             // const showNotes = document.createElement('ul');
-//         });
-//     });
-// }
+var selectedOption = selectElement.options[selectElement.selectedIndex];
 
 
 
@@ -108,25 +87,47 @@ if (addNote) {
             alert('Fields should be filled');
             return;
         }
-        // selectFolder.classList.add('show-FolderSelect');
-        // selectFolder.style.display = 'flex';
-        // selectFolder.classList.toggle('visible');
-        selectElement.addEventListener("change", function() {
-            if (!selectedOption.disabled || selectedOption !== "") {
-                alert("Selected option: " + selectedOption);
-            } else {
-                alert("Please select folder to be saved to")
-            }
-        });
+        const selectedOption = selectElement.options[selectElement.selectedIndex];
+        if (selectedOption === selectElement.options[0]) {
+            alert('Please select folder to be saved to');
+            return;
+        }
+        const category = selectedOption.value.toLowerCase() + 'Category';
+        const submenu = document.querySelector(`#${category} .submenu`);
 
+        // create a new list item element for the note
+        const newNote = document.createElement('li');
+        newNote.classList.add('note');
+        newNote.innerHTML = `<div class="note">
+        <div class="note-header">
+          <h4>${noteTitle.value}</h4>
+          <span class="deleteNote"><i class="ri-delete-bin-line"></i></span>
+        </div>
+        <p>${noteContent.value}</p>
+      </div>`;
+
+
+        // create a new list item element for the note
+        const noteCard = document.createElement('div');
+        noteCard.classList.add('note');
+        noteCard.innerHTML = `<div class="note">
+        <div class="note-header">
+          <h4>${noteTitle.value}</h4>
+          <span class="deleteNote"><i class="ri-delete-bin-line"></i></span>
+        </div>
+        <p>${noteContent.value}</p>
+      </div>`;
+
+        // append the new note to the corresponding category's submenu
+        submenu.appendChild(newNote);
+        noteTab.appendChild(noteCard);
+
+        // clear the input fields
+        noteTitle.value = '';
+        noteContent.value = '';
+        selectedOption === selectElement.options[0];
+        alert('Selected option: ' + selectedOption.value);
     });
-
-    // document.addEventListener('click', (event) => {
-    //     if (!selectFolder.contains(event.target)) {
-    //         selectFolder.style.display = 'none';
-    //         // selectFolder.classList.remove('show-FolderSelect');
-    //     }
-    // });
 }
 
 if (saveToCategory) {
