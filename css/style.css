@@ -334,14 +334,14 @@ nav:hover {
 
 .submenu li .note-header .deleteNote {
     margin-left: auto;
-    position: relative;
+    /* position: relative; */
     border: 1px solid red;
     width: 30px;
     /* height: auto; */
     padding: .3em;
-    display: flex;
+    /* display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: flex-end; */
     text-align: center;
 }
 
