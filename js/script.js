@@ -113,7 +113,7 @@ if (addNote) {
         noteCard.innerHTML = `<div class="note">
         <div class="note-header">
           <h4>${noteTitle.value}</h4>
-          <span class="deleteNote"><i class="ri-delete-bin-line"></i></span>
+        //   <span class="deleteNote"><i class="ri-delete-bin-line"></i></span>
         </div>
         <p>${noteContent.value}</p>
       </div>`;

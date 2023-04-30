@@ -318,6 +318,8 @@ nav:hover {
     width: 100%;
     height: auto;
     color: var(--text-color-light);
+    margin-bottom: 7px;
+    cursor: pointer;
     /* padding-left: 42px; */
     -webkit-transition: all 0.25s ease;
     -o-transition: all 0.25s ease;
@@ -334,11 +336,13 @@ nav:hover {
 
 .submenu li .note-header .deleteNote {
     margin-left: auto;
-    /* position: relative; */
-    border: 1px solid red;
+    position: relative;
+    /* border: 1px solid red; */
     width: 30px;
+    bottom: 7px;
+    right: 0;
     /* height: auto; */
-    padding: .3em;
+    /* padding: .3em; */
     /* display: flex;
     align-items: center;
     justify-content: flex-end; */
@@ -354,12 +358,17 @@ nav:hover {
     -o-transform: none;
     /* margin-left: 10px; */
     margin: auto;
-    color: green;
+    color: var(--text-color-light);
+}
+
+.submenu li .note-header .deleteNote i:hover {
+    color: var(--text-color);
 }
 
 .submenu li:hover {
-    background: var(--text-color-light);
-    color: var(--bg-color);
+    /* background: var(--text-color-light);
+    color: var(--bg-color); */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 .submenu li p {
