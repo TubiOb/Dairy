@@ -72,6 +72,8 @@ const diary = document.querySelector('.diary');
 const noteTab = document.querySelector('.notesTab');
 var selectElement = document.getElementById("my-select");
 var selectedOption = selectElement.options[selectElement.selectedIndex];
+const filterSelect = document.querySelector('.filter');
+const notecardsArray = [];
 
 
 
@@ -110,13 +112,17 @@ if (addNote) {
         // create a new list item element for the note
         const noteCard = document.createElement('div');
         noteCard.classList.add('note');
-        noteCard.innerHTML = `<div class="note">
-        <div class="note-header">
+        noteCard.setAttribute('data-category', selectedOption.value.toLowerCase());
+        noteCard.innerHTML = `<div class="noteCard">
+        <div class="noteCard-header">
           <h4>${noteTitle.value}</h4>
-        //   <span class="deleteNote"><i class="ri-delete-bin-line"></i></span>
         </div>
         <p>${noteContent.value}</p>
       </div>`;
+
+        notecardsArray.push(noteCard);
+
+        //  <span class="deleteNote"><i class="ri-delete-bin-line"></i></span>
 
         // append the new note to the corresponding category's submenu
         submenu.appendChild(newNote);
@@ -166,88 +172,25 @@ saveToCategory.forEach(saveCategory => {
 
 
 
-// toggle display of ul when category element is clicked
-folderCategories.addEventListener('click', e => {
-    if (e.target.classList.contains('folders') || e.target.classList.contains('folderName')) {
-        const categoryText = e.target.querySelector('span:nth-child(2)').textContent.toLowerCase();
-        const ulElement = home.querySelector(`.${categoryText}-ul`);
-        if (ulElement) {
-            ulElement.style.display = 'grid';
-            diary.style.display = 'none';
+
+
+// FILTER FUNCTION
+filterSelect.addEventListener('change', (event) => {
+    const selectedCategory = event.target.value.toLowerCase();
+
+    // Filter noteCards by category
+    const filteredNoteCards = notecardsArray.filter(noteCard => {
+        const noteCardCategory = noteCard.getAttribute('data-category');
+        return noteCardCategory === selectedCategory || selectedCategory === 'all';
+    });
+
+    // Show/hide noteCards based on the filter result
+    notecardsArray.forEach(noteCard => {
+        if (filteredNoteCards.includes(noteCard)) {
+            noteCard.style.display = 'block'; // Show the noteCard
+        } else {
+            noteCard.style.display = 'none'; // Hide the noteCard
         }
-    }
-});
-
-// add note to corresponding ul when saveCategory button is clicked
-saveToCategory.forEach(saveCategory => {
-    saveCategory.addEventListener('click', () => {
-        selectFolder.classList.remove('show-FolderSelect');
-        const categoryText = saveCategory.querySelector('span:nth-child(2)').textContent;
-        const ulElement = home.querySelector(`.${categoryText.toLowerCase()}-ul`);
-        const newLi = document.createElement('li');
-        const date = new Date();
-        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-        const dateText = `${monthNames[date.getMonth()]} ${date.getDate()}`;
-        const dateElement = document.createElement('span');
-        dateElement.textContent = dateText;
-        newLi.appendChild(dateElement);
-        const titleElement = document.createElement('h2');
-        titleElement.textContent = noteTitle.value;
-        newLi.appendChild(titleElement);
-        const contentElement = document.createElement('p');
-        contentElement.textContent = noteContent.value;
-        newLi.appendChild(contentElement);
-
-
-        const iconElement = document.createElement('div');
-        newLi.appendChild(iconElement);
-        // Create archive icon
-        const archiveIcon = document.createElement('i');
-        archiveIcon.classList.add('ri-archive-line');
-        archiveIcon.style.display = 'none';
-        archiveIcon.addEventListener('click', () => {
-            newLi.remove();
-            const archivedLi = newLi.cloneNode(true);
-            archivedLi.querySelector('i').remove();
-            archiveList.appendChild(archivedLi);
-            alert("Archived!");
-        });
-        iconElement.appendChild(archiveIcon);
-        // newLi.appendChild(archiveIcon);
-
-        // Create delete icon
-        const deleteIcon = document.createElement('i');
-        deleteIcon.classList.add('ri-delete-bin-line');
-        deleteIcon.style.display = 'none';
-        deleteIcon.addEventListener('click', () => {
-            newLi.remove();
-            const deletedLi = newLi.cloneNode(true);
-            deletedLi.querySelector('i').remove();
-            binList.appendChild(deletedLi);
-            alert("Deleted!");
-        });
-        iconElement.appendChild(deleteIcon);
-        // newLi.appendChild(deleteIcon);
-
-
-        // Show/hide icons on hover
-        newLi.addEventListener('mouseenter', () => {
-            // archiveIcon.style.display = 'block';
-            // deleteIcon.style.display = 'block';
-            iconElement.style.display = 'flex';
-        });
-        newLi.addEventListener('mouseleave', () => {
-            // archiveIcon.style.display = 'none';
-            // deleteIcon.style.display = 'none';
-            iconElement.style.display = 'none'
-        });
-
-
-
-        ulElement.appendChild(newLi);
-        noteTitle.value = "";
-        noteContent.value = "";
-        alert("Saved!");
     });
 });
 
@@ -255,51 +198,52 @@ saveToCategory.forEach(saveCategory => {
 
 
 
-// RETURN/SHOW UL ELEMENT FOR EACH FOLDER CATEGORY
-// Add event listener to each folder element
-Folders.forEach(folder => {
-    folder.addEventListener('click', () => {
-        const categoryText = folder.querySelector('span:nth-child(2)').textContent;
-        const ulElement = document.querySelector(`.${categoryText.toLowerCase()}-ul`);
-        // hide diary section
-        folderCategories.style.display = 'none';
-        // alert('SCREEAAAAMMMMMM');
-        // alert(categoryText)
-        // alert(ulElement)
-        diary.style.display = 'none';
 
-        ulElement.style.display = 'grid';
-    });
-});
+// // RETURN/SHOW UL ELEMENT FOR EACH FOLDER CATEGORY
+// // Add event listener to each folder element
+// Folders.forEach(folder => {
+//     folder.addEventListener('click', () => {
+//         const categoryText = folder.querySelector('span:nth-child(2)').textContent;
+//         const ulElement = document.querySelector(`.${categoryText.toLowerCase()}-ul`);
+//         // hide diary section
+//         folderCategories.style.display = 'none';
+//         // alert('SCREEAAAAMMMMMM');
+//         // alert(categoryText)
+//         // alert(ulElement)
+//         diary.style.display = 'none';
 
-
-// CREATING THE ARCHIVE AND DELETE DIVS/UL
-const archiveList = document.createElement('ul');
-archiveList.classList.add('archive-list');
-// archive.appendChild(archiveList);
-home.appendChild(archiveList);
-archiveList.style.display = 'none';
+//         ulElement.style.display = 'grid';
+//     });
+// });
 
 
-//  Create delete div/ul
-const binList = document.createElement('ul');
-binList.classList.add('bin-list');
-// bin.appendChild(binList);
-home.appendChild(binList);
-binList.style.display = 'none';
+// // CREATING THE ARCHIVE AND DELETE DIVS/UL
+// const archiveList = document.createElement('ul');
+// archiveList.classList.add('archive-list');
+// // archive.appendChild(archiveList);
+// home.appendChild(archiveList);
+// archiveList.style.display = 'none';
 
 
-// ADDING FUNCTIONALITY TO BIN AND ARCHIVE
-archive.addEventListener('click', () => {
-    alert('SCREEAAAAMMMMMM');
-    diary.style.display = 'none';
-    // ulElement.style.display = 'none';
-    archiveList.style.display = 'grid';
-});
+// //  Create delete div/ul
+// const binList = document.createElement('ul');
+// binList.classList.add('bin-list');
+// // bin.appendChild(binList);
+// home.appendChild(binList);
+// binList.style.display = 'none';
 
-bin.addEventListener('click', () => {
-    alert('ABBBEEEEEEGGGGGG');
-    diary.style.display = 'none';
-    // ulElement.style.display = 'none';
-    binList.style.display = 'grid';
-});
+
+// // ADDING FUNCTIONALITY TO BIN AND ARCHIVE
+// archive.addEventListener('click', () => {
+//     alert('SCREEAAAAMMMMMM');
+//     diary.style.display = 'none';
+//     // ulElement.style.display = 'none';
+//     archiveList.style.display = 'grid';
+// });
+
+// bin.addEventListener('click', () => {
+//     alert('ABBBEEEEEEGGGGGG');
+//     diary.style.display = 'none';
+//     // ulElement.style.display = 'none';
+//     binList.style.display = 'grid';
+// });
