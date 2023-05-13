@@ -332,36 +332,42 @@ nav:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.submenu li .note-header .deleteNote {
-    margin-left: auto;
-    position: relative;
-    /* border: 1px solid red; */
-    width: 30px;
-    bottom: 7px;
-    right: 0;
-    /* height: auto; */
-    /* padding: .3em; */
-    /* display: flex;
-    align-items: center;
-    justify-content: flex-end; */
     text-align: center;
 }
 
-.submenu li .note-header .deleteNote i {
-    /* position: relative; */
+.submenu li .note-header .noteActivity {
+    margin-left: auto;
+    position: relative;
+    /* border: 1px solid red; */
+    width: 50px;
+    bottom: 5px;
+    right: 0;
+    /* height: auto; */
+    padding: .2em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+    top: 3px;
+}
+
+.submenu li .note-header .deleteNote i,
+.submenu li .note-header .archiveNote i {
+    position: relative;
     font-size: 12px;
     transform: none;
     -webkit-transform: none;
     -ms-transform: none;
     -o-transform: none;
     /* margin-left: 10px; */
-    margin: auto;
+    /* margin: auto; */
+    /* margin-top: 4px; */
     color: var(--text-color-light);
 }
 
-.submenu li .note-header .deleteNote i:hover {
+.submenu li .note-header .deleteNote i:hover,
+.submenu li .note-header .archiveNote i:hover {
     color: var(--text-color);
 }
 

@@ -60,7 +60,7 @@ const folderCategories = document.querySelector('.categories');
 const diaryCategory = document.querySelector('.diaryCategory');
 const archive = document.querySelector('#Archive');
 const homePage = document.querySelector('#Home');
-const bin = document.querySelector('#Trash');
+const bin = document.querySelector('#delete');
 const notif = document.querySelector('#Notification');
 const addNote = document.querySelector('.addNotebtn');
 const selectFolder = document.querySelector('.myCategories');
@@ -103,7 +103,10 @@ if (addNote) {
         newNote.innerHTML = `<div class="note">
         <div class="note-header">
           <h4>${noteTitle.value}</h4>
-          <span class="deleteNote"><i class="ri-delete-bin-line"></i></span>
+          <div class="noteActivity">
+            <span class="deleteNote"><i class="ri-delete-bin-line delete"></i></span>
+            <span class="archiveNote"><i class="ri-inbox-archive-line archive"></i></span>
+          </div>
         </div>
         <p>${noteContent.value}</p>
       </div>`;
@@ -124,6 +127,19 @@ if (addNote) {
 
         //  <span class="deleteNote"><i class="ri-delete-bin-line"></i></span>
 
+
+        // DELETE THE FOLDERS/NOTES
+        const binIcon = newNote.querySelector('.delete');
+        binIcon.addEventListener('click', (event) => {
+            event.stopPropagation();
+            // Remove newNote from the submenu
+            submenu.removeChild(newNote);
+            // Remove noteCard from the noteTab
+            noteTab.removeChild(noteCard);
+        });
+
+
+
         // append the new note to the corresponding category's submenu
         submenu.appendChild(newNote);
         noteTab.appendChild(noteCard);
@@ -132,7 +148,7 @@ if (addNote) {
         noteTitle.value = '';
         noteContent.value = '';
         selectedOption === selectElement.options[0];
-        alert('Selected option: ' + selectedOption.value);
+        // alert('Selected option: ' + selectedOption.value);
     });
 }
 
