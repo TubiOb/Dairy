@@ -60,7 +60,7 @@ const folderCategories = document.querySelector('.categories');
 const diaryCategory = document.querySelector('.diaryCategory');
 const archive = document.querySelector('#Archive');
 const homePage = document.querySelector('#Home');
-const bin = document.querySelector('#delete');
+const bin = document.querySelector('#Trash');
 const notif = document.querySelector('#Notification');
 const addNote = document.querySelector('.addNotebtn');
 const selectFolder = document.querySelector('.myCategories');
@@ -74,6 +74,10 @@ var selectElement = document.getElementById("my-select");
 var selectedOption = selectElement.options[selectElement.selectedIndex];
 const filterSelect = document.querySelector('.filter');
 const notecardsArray = [];
+const deleted = document.querySelector('.binList');
+const archived = document.querySelector('.archiveList');
+
+
 
 
 
@@ -136,6 +140,78 @@ if (addNote) {
             submenu.removeChild(newNote);
             // Remove noteCard from the noteTab
             noteTab.removeChild(noteCard);
+
+            const deletedNote = document.createElement('li');
+            deletedNote.classList.add('note');
+            deletedNote.innerHTML = `<div class="note">
+        <div class="note-header">
+          <h4>${noteTitle.value}</h4>
+        </div>
+        <p>${noteContent.value}</p>
+      </div>`;
+
+
+            const deletednoteCard = document.createElement('div');
+            deletednoteCard.classList.add('note');
+            deletednoteCard.innerHTML = `<div class="deletednoteCard">
+        <div class="noteCard-header">
+          <h4>${noteTitle.value}</h4>
+        </div>
+        <p>${noteContent.value}</p>
+      </div>`;
+
+            deleted.appendChild(deletedNote);
+
+
+            bin.addEventListener('click', () => {
+                noteTab.innerHTML = '';
+                noteTab.appendChild(deletednoteCard);
+            });
+        });
+
+
+        // ARCHIVE THE FOLDERS/NOTES
+
+        const archiveIcon = newNote.querySelector('.archive');
+        archiveIcon.addEventListener('click', (event) => {
+            event.stopPropagation();
+            // Remove newNote from the submenu
+            submenu.removeChild(newNote);
+            // Remove noteCard from the noteTab
+            noteTab.removeChild(noteCard);
+
+
+            const archivednoteCard = document.createElement('div');
+            const archivedNote = document.createElement('li');
+            archivedNote.classList.add('note');
+            archivedNote.innerHTML = `<div class="note">
+        <div class="note-header">
+          <h4>${noteTitle.value}</h4>
+          <div class="noteActivity">
+            <span class="deleteNote"><i class="ri-delete-bin-line delete"></i></span>
+          </div>
+        </div>
+        <p>${noteContent.value}</p>
+      </div>`;
+
+
+
+            archivednoteCard.classList.add('note');
+            archivednoteCard.innerHTML = `<div class="archivednoteCard">
+        <div class="noteCard-header">
+          <h4>${noteTitle.value}</h4>
+        </div>
+        <p>${noteContent.value}</p>
+      </div>`;
+
+
+            archived.appendChild(archivedNote);
+
+
+            archive.addEventListener('click', () => {
+                noteTab.innerHTML = '';
+                noteTab.appendChild(archivednoteCard);
+            });
         });
 
 
@@ -150,7 +226,7 @@ if (addNote) {
         selectedOption === selectElement.options[0];
         // alert('Selected option: ' + selectedOption.value);
     });
-}
+};
 
 if (saveToCategory) {
     saveToCategory.forEach((item) => {

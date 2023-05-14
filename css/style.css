@@ -304,13 +304,17 @@ nav:hover {
         color: red;
     } */
 
-.submenu {
+.submenu,
+.archiveList,
+.binList {
     display: none;
     background: var(--bg-color);
     font-size: var(--smaller-font-size);
 }
 
-.submenu li {
+.submenu li,
+.archiveList li,
+.binList li {
     display: flex;
     flex-direction: column;
     /* border-bottom: 1px solid #4b4a5e; */
@@ -328,14 +332,17 @@ nav:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.submenu li .note-header {
+.submenu li .note-header,
+.archiveList li .note-header,
+.binList li .note-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     text-align: center;
 }
 
-.submenu li .note-header .noteActivity {
+.submenu li .note-header .noteActivity,
+.archiveList li .note-header .noteActivity {
     margin-left: auto;
     position: relative;
     /* border: 1px solid red; */
@@ -353,7 +360,8 @@ nav:hover {
 }
 
 .submenu li .note-header .deleteNote i,
-.submenu li .note-header .archiveNote i {
+.submenu li .note-header .archiveNote i,
+.archiveList li .note-header .deleteNote i {
     position: relative;
     font-size: 12px;
     transform: none;
@@ -367,17 +375,22 @@ nav:hover {
 }
 
 .submenu li .note-header .deleteNote i:hover,
-.submenu li .note-header .archiveNote i:hover {
+.submenu li .note-header .archiveNote i:hover,
+.archiveList li .note-header .deleteNote i:hover {
     color: var(--text-color);
 }
 
-.submenu li:hover {
+.submenu li:hover,
+.archiveList li:hover,
+.binList li:hover {
     /* background: var(--text-color-light);
     color: var(--bg-color); */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
-.submenu li p {
+.submenu li p,
+.archiveList li p,
+.binList li p {
     display: none;
 }
 
@@ -607,7 +620,9 @@ select option,
     gap: 5px;
 }
 
-.notesTab .noteCard {
+.notesTab .noteCard,
+.notesTab .deletednoteCard,
+.notesTab .archivednoteCard {
     width: 180px;
     min-height: 120px;
     word-wrap: break-word;
